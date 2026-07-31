@@ -1,8 +1,20 @@
 version: '3.8'
 
 services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: glpi_db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=Cloud*Mega*2026
+      - MYSQL_DATABASE=glpidb
+      - MYSQL_USER=phcadmin
+      - MYSQL_PASSWORD=Cloud*Mega*2026
+    volumes:
+      - db_data:/var/lib/mysql
+
   glpi:
-    image: diapers/glpi:latest
+    image: elestio/glpi:latest
     container_name: glpi_app
     restart: always
     ports:
@@ -24,3 +36,4 @@ services:
 volumes:
   glpi_data:
   glpi_config:
+  db_data:
